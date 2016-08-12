@@ -4,7 +4,7 @@ web:
     - "80:80"
     - "443:443"
   volumes:
-    - /var/www/newsite:/var/www/html
+    - /var/www/newsite:/var/www/newsite
     - /etc/nginx:/etc/nginx
   links:
     - php
@@ -14,8 +14,9 @@ php:
 #  ports:
 #    - "9000:9000"
   volumes:
-    - /etc/php/7.0/fpm:/etc/php7/fpm
-    - /var/www:/var/www
+    - /etc/php/7.0/fpm:/etc/php/7.0/fpm
+    - /var/www/newsite:/var/www/newsite
+    - /run/php:/run/php
   links:
     - mysql
     - mongo
