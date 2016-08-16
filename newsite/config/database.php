@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'mongodb'),
 
     /*
     |--------------------------------------------------------------------------
@@ -54,11 +54,11 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', 'localhost'),
+            'host' => env('DB_HOST', 'mysql'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'database' => env('MYSQL_DATABASE', 'forge'),
+            'username' => env('MYSQL_USER', 'forge'),
+            'password' => env('MYSQL_PASSWORD', ''),
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix' => '',
@@ -78,6 +78,17 @@ return [
             'schema' => 'public',
         ],
 
+	'mongodb' => [
+	    'driver'   => 'mongodb',
+	    'host'     => env('DB_HOST', 'mongo'),
+	    'port'     => env('DB_PORT', 27017),
+	    'database' => env('MONGODB_DATABASE'),
+	    'username' => env('MONGODB_USER'),
+	    'password' => env('MONGODB_PASS'),
+//	    'options' => [
+//		'database' => 'admin' // sets the authentication database required by mongo 3
+//	    ]
+	],
     ],
 
     /*
