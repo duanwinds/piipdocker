@@ -1,0 +1,50 @@
+web:
+  image: nginx
+  ports:
+    - "80:80"
+    - "443:443"
+  volumes:
+    - /var/www/newsite:/var/www/newsite
+    - /etc/nginx:/etc/nginx
+  volumes_from:
+    - laravel
+  links:
+    - php
+
+php:
+  image: duanli/php-fpm
+#  ports:
+#    - "9000:9000"
+  volumes:
+#    - /etc/php/7.0/fpm:/etc/php/7.0/fpm
+    - /var/www/newsite:/var/www/newsite
+    - /run/php:/run/php
+  links:
+    - mysql
+    - mongo
+    - redis
+
+mysql:
+  image: mysql
+  volumes:
+    - /data/mysql:/var/lib/mysql
+  environment:
+    - MYSQL_ROOT_PASSWORD=6yhn5tgb
+    - MYSQL_DATABASE=ipr
+    - MYSQL_USER=piip
+    - MYSQL_PASSWORD=5tgb6yhn
+
+mongo:
+  image: duanli/mongo
+  volumes:
+    - /data/mongo:/data/db
+  environment:
+    - MONGODB_USER=piip
+    - MONGODB_DATABASE=piip
+    - MONGODB_PASS=5tgb6yhn
+
+redis:
+  image: redis
+
+laravel:
+  image: duanli/laravel
