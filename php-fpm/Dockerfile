@@ -12,7 +12,7 @@ ENV LANGUAGE        en_US.UTF-8
 #RUN "sh" "-c" "echo nameserver 8.8.8.8 >> /etc/resolv.conf"
 #RUN echo "deb http://tw.archive.ubuntu.com/ubuntu/ xenial main restricted" > /etc/apt/sources.list
 #RUN echo "deb http://tw.archive.ubuntu.com/ubuntu/ xenial main universe" >> /etc/apt/sources.list
-Run apt-get update && apt-get -y install php7.0-fpm php7.0-mysql php7.0-curl php7.0-mcrypt php7.0-cli php-ldap php-redis php-mbstring php-xml php7.0-dev php-xdebug php-pear libsasl2-dev supervisor
+Run apt-get update && apt-get -y install php7.0-fpm php7.0-mysql php7.0-curl php7.0-mcrypt php7.0-cli php-pgsql php-ldap php-redis php-mbstring php-xml php7.0-dev php-xdebug php-pear libsasl2-dev supervisor
 
 RUN mkdir -p /usr/local/openssl/include/openssl/ /var/www/html && \
     ln -s /usr/include/openssl/evp.h /usr/local/openssl/include/openssl/evp.h && \
