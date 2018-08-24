@@ -12,7 +12,7 @@ ENV LANGUAGE        en_US.UTF-8
 #RUN "sh" "-c" "echo nameserver 8.8.8.8 >> /etc/resolv.conf"
 #RUN echo "deb http://tw.archive.ubuntu.com/ubuntu/ xenial main restricted" > /etc/apt/sources.list
 #RUN echo "deb http://tw.archive.ubuntu.com/ubuntu/ xenial main universe" >> /etc/apt/sources.list
-Run apt-get update && apt-get -y install php7.0-fpm php7.0-mysql php7.0-curl php7.0-mcrypt php7.0-cli php-pgsql php-ldap php-redis php-mbstring php-xml php7.0-dev php-xdebug php-pear libsasl2-dev supervisor
+Run apt-get update && apt-get -y install php7.1-fpm php7.1-mysql php7.1-curl php7.1-mcrypt php7.1-cli php-pgsql php-ldap php-redis php-mbstring php-xml php7.1-dev php-xdebug php-pear libsasl2-dev supervisor
 
 RUN mkdir -p /usr/local/openssl/include/openssl/ /var/www/html && \
     ln -s /usr/include/openssl/evp.h /usr/local/openssl/include/openssl/evp.h && \
@@ -22,13 +22,13 @@ RUN mkdir -p /usr/local/openssl/include/openssl/ /var/www/html && \
 
 RUN pecl install mongodb
 
-RUN echo "extension=mongodb.so" > /etc/php/7.0/fpm/conf.d/20-mongodb.ini && \
-    echo "extension=mongodb.so" > /etc/php/7.0/cli/conf.d/20-mongodb.ini && \
-    echo "extension=mongodb.so" > /etc/php/7.0/mods-available/mongodb.ini
+RUN echo "extension=mongodb.so" > /etc/php/7.1/fpm/conf.d/20-mongodb.ini && \
+    echo "extension=mongodb.so" > /etc/php/7.1/cli/conf.d/20-mongodb.ini && \
+    echo "extension=mongodb.so" > /etc/php/7.1/mods-available/mongodb.ini
 
-COPY fpm /etc/php/7.0/fpm
+COPY fpm /etc/php/7.1/fpm
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 EXPOSE 9000
-#ENTRYPOINT service php7.0-fpm start
+#ENTRYPOINT service php7.1-fpm start
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
